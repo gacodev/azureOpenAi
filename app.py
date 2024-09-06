@@ -1,7 +1,7 @@
 import os
 import requests
 from dotenv import load_dotenv
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 load_dotenv()
 
@@ -45,10 +45,7 @@ def chat():
 
 @app.route('/', methods=['GET'])
 def home():
-    return jsonify({
-        "message": "Welcome to the Azure OpenAI API. Use /chat to interact with the model.",
-        "deployment": deployment_name
-    })
+    return render_template('index.html')  # Renderiza la página HTML
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
